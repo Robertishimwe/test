@@ -1,1 +1,1 @@
-repo_token: jaKTflWwuvJ7Y6m5MLBbuQtRnnjLj9IML
+repo_token: ${{ secrets.repo_token}}
