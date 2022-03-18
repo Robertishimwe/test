@@ -1,6 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../src/app.js';
+const request = require('supertest');
 
 chai.should();
 
@@ -15,17 +16,28 @@ const user = {
 
 describe('GET ALL USERS', () => {
     //get all posts
+    // describe('GET /api/v2/users', () => {
+    //     it('It Should Fetch all users', (done) => {
+    //         chai
+    //             .request(app)
+    //             .get('/api/v2/users')
+    //             .end((err, res) => {
+    //                 res.should.have.status(200);
+    //                 done();
+    //             })
+    //             .timeout(12000);
+    //     });
+    // });
 
     describe('GET /api/v2/users', () => {
-        it('It Should Fetch all Posts', (done) => {
-            chai
-                .request(app)
+        it('It Should not Fetch all user', (done) => {
+            request(app)
                 .get('/api/v2/users')
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    done();
-                })
-                .timeout(10000);
+
+            .end((err, res) => {
+                res.should.have.status(200);
+                done();
+            });
         });
     });
 });
