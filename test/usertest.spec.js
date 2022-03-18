@@ -36,6 +36,7 @@ describe('GET ALL USERS', () => {
 
             .end((err, res) => {
                 res.should.have.status(200);
+                if (err) return err;
                 done();
             });
         });
