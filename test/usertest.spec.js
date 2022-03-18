@@ -14,7 +14,8 @@ const user = {
 };
 
 describe('GET ALL USERS', () => {
-    get all posts
+    //get all posts
+
     describe('GET /api/v2/users', () => {
         it('It Should Fetch all users', (done) => {
             chai
@@ -24,9 +25,7 @@ describe('GET ALL USERS', () => {
                     res.should.have.status(200);
                     done();
                 })
-                .timeout(12000);
+                .timeout(6000);
         });
     });
-
-
 });
