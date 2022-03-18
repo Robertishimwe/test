@@ -35,10 +35,11 @@ describe('GET ALL USERS', () => {
                 .get('/api/v2/users')
 
             .end((err, res) => {
-                res.should.have.status(200);
-                if (err) return err;
-                done();
-            });
+                    res.should.have.status(200);
+                    if (err) return err;
+                    done();
+                })
+                .catch(err);
         });
     });
 });
