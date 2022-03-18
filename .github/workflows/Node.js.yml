@@ -1,7 +1,7 @@
 name: CI
 env:
-  DB_CONNECT: postgres://mbgwjazc:KyTWvbGQAS7Z9LugdbtygUeXLJFrh3Nl@kashin.db.elephantsql.com/mbgwjazc
-  TOKEN_SECRET: hjvgdfugvehfcbhejfgey
+  DB_CONNECT: ${{ secrets.DB_CONNECT }}
+  TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
   CI: true
 
 # Controls when the workflow will run
@@ -20,7 +20,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -32,5 +32,5 @@ jobs:
       - name: Code Climate Test Reporter
         uses: aktions/codeclimate-test-reporter@v1
         with:
-          codeclimate-test-reporter-id: d1a7faa48cd92b07f5561dce5e948e3e0c49ffb4f4c469bd1a3b12b5ee4a96ff
+          codeclimate-test-reporter-id: ${{ secrets.CODECLIMATE }}
           command: after-build

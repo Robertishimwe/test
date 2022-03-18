@@ -1,7 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../src/app.js';
-const request = require('supertest');
 
 chai.should();
 
@@ -31,18 +30,13 @@ describe('GET ALL USERS', () => {
 
     describe('GET /api/v2/users', () => {
         it('It Should not Fetch all user', (done) => {
-            try {
-                request(app)
-                    .get('/api/v2/users')
+            request(app)
+                .get('/api/v2/users')
 
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    if (err) return err;
-                    done();
-                });
-            } catch (error) {
-                return error;
-            }
+            .end((err, res) => {
+                res.should.have.status(200);
+                done();
+            });
         });
     });
 });
