@@ -1,0 +1,36 @@
+name: CI
+env:
+  DB_CONNECT: ${{ secrets.DB_CONNECT }}
+  TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+  CI: true
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ch-setup-test-181414701]
+  pull_request:
+    branches: [develop]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - run: yarn install
+      - run: yarn run build
+      - run: yarn test
+      - name: Code Climate Test Reporter
+        uses: aktions/codeclimate-test-reporter@v1
+        with:
+          codeclimate-test-reporter-id: d1a7faa48cd92b07f5561dce5e948e3e0c49ffb4f4c469bd1a3b12b5ee4a96ff
+          command: after-build
