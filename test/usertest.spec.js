@@ -31,15 +31,18 @@ describe('GET ALL USERS', () => {
 
     describe('GET /api/v2/users', () => {
         it('It Should not Fetch all user', (done) => {
-            request(app)
-                .get('/api/v2/users')
+            try {
+                request(app)
+                    .get('/api/v2/users')
 
-            .end((err, res) => {
+                .end((err, res) => {
                     res.should.have.status(200);
                     if (err) return err;
                     done();
-                })
-                .catch(err);
+                });
+            } catch (error) {
+                return error;
+            }
         });
     });
 });
